@@ -3,67 +3,323 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HSK Learning Dashboard</title>
-    <meta name="description" content="Dashboard belajar HSK 1-3, materi Google Drive, progress harian, dan jadwal review otomatis." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <title>中文 HSK — Daily Learning</title>
+    <meta name="description" content="Daily HSK learning dashboard: materi HSK 1, HSK 2, HSK 3, fokus harian, dan sesi belajar pagi malam." />
+    <style>
+      :root {
+        --bg: #f7efe1;
+        --ink: #1f1a14;
+        --muted: #796b5c;
+        --card: #fffaf0;
+        --line: #eadcc9;
+        --red: #d94332;
+        --gold: #d89b27;
+        --green: #2f7d54;
+        --blue: #285f87;
+        --shadow: 0 18px 50px rgba(72, 48, 22, 0.13);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(217, 67, 50, 0.14), transparent 28rem),
+          radial-gradient(circle at top right, rgba(216, 155, 39, 0.18), transparent 26rem),
+          linear-gradient(180deg, #fff8ed 0%, var(--bg) 100%);
+        min-height: 100vh;
+      }
+
+      .wrap {
+        width: min(980px, calc(100% - 28px));
+        margin: 0 auto;
+        padding: 34px 0 28px;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 22px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.2rem, 7vw, 4.8rem);
+        line-height: 0.95;
+        letter-spacing: -0.06em;
+      }
+
+      .subtitle {
+        margin: 14px auto 0;
+        max-width: 680px;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.65;
+      }
+
+      .hero-card,
+      .card,
+      .footer {
+        background: rgba(255, 250, 240, 0.86);
+        border: 1px solid var(--line);
+        border-radius: 26px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-card {
+        padding: 24px;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(217, 67, 50, 0.1);
+        color: var(--red);
+        font-weight: 800;
+        font-size: 0.84rem;
+      }
+
+      h2 {
+        margin: 14px 0 8px;
+        font-size: clamp(1.55rem, 4vw, 2.7rem);
+        letter-spacing: -0.04em;
+      }
+
+      p { line-height: 1.65; }
+      .muted { color: var(--muted); }
+      code { background: #f2e5d2; border-radius: 8px; padding: 2px 6px; }
+
+      .meta {
+        display: grid;
+        gap: 10px;
+      }
+
+      .meta div {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 14px;
+        background: rgba(255, 255, 255, 0.44);
+      }
+
+      .meta b { display: block; color: var(--muted); font-size: 0.8rem; margin-bottom: 4px; }
+      .meta span { font-weight: 850; }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin: 26px 0 12px;
+      }
+
+      .section-title h2 { margin: 0; font-size: 1.65rem; }
+      .section-title span { color: var(--muted); font-weight: 700; }
+
+      .levels,
+      .sessions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .level-tag {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+        font-weight: 900;
+        margin-bottom: 20px;
+      }
+
+      .level-tag small {
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .card h3 {
+        margin: 0 0 8px;
+        font-size: 1.3rem;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        margin-top: 10px;
+        padding: 0 15px;
+        border-radius: 999px;
+        color: #fff;
+        background: var(--ink);
+        text-decoration: none;
+        font-weight: 850;
+      }
+
+      .hsk1 { border-top: 6px solid var(--green); }
+      .hsk2 { border-top: 6px solid var(--gold); }
+      .hsk3 { border-top: 6px solid var(--red); }
+
+      .tasks {
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+
+      .tasks li {
+        padding: 12px 13px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.52);
+        border: 1px solid var(--line);
+        font-weight: 760;
+      }
+
+      .session-card strong {
+        display: block;
+        font-size: 1.15rem;
+        margin-bottom: 6px;
+      }
+
+      .footer {
+        margin-top: 18px;
+        padding: 18px 20px;
+        text-align: center;
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      @media (max-width: 760px) {
+        .wrap { width: min(100% - 18px, 620px); padding-top: 24px; }
+        .hero-card, .levels, .sessions { grid-template-columns: 1fr; }
+        .section-title { align-items: flex-start; flex-direction: column; }
+      }
+    </style>
   </head>
   <body>
-    <main class="shell">
-      <section class="hero">
-        <div>
-          <p class="eyebrow">learning.indraseptianto.my.id</p>
-          <h1>HSK learning control room</h1>
-          <p class="hero-copy">Dashboard ringan untuk ngatur materi HSK 1-3, target harian, review mingguan, dan catatan progress. Cocok dipakai bareng cronjob/GitHub Actions.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="#today">Mulai Hari Ini</a>
-            <a class="button ghost" href="noted.md">Buka Catatan Project</a>
+    <div class="wrap">
+      <header>
+        <h1>中文 HSK</h1>
+        <p class="subtitle">Belajar Mandarin harian — HSK 1, HSK 2, HSK 3. Fokus dibuat otomatis via cronjob, tinggal buka dashboard dan lanjut latihan.</p>
+      </header>
+
+      <main>
+        <section class="hero-card">
+          <div>
+            <span class="pill">🌅 Daily Focus</span>
+            <h2 id="daily-title">Loading...</h2>
+            <p id="daily-desc" class="muted">Mengambil jadwal dari <code>data/daily.json</code>.</p>
+            <ul id="daily-tasks" class="tasks">
+              <li>Loading task...</li>
+            </ul>
           </div>
-        </div>
-        <aside class="today-card" id="today">
-          <span class="badge">Today's Focus</span>
-          <h2 id="daily-title">Memuat jadwal...</h2>
-          <p id="daily-desc">Dashboard akan membaca file <code>data/daily.json</code> yang di-update oleh cronjob.</p>
-          <ul id="daily-tasks"></ul>
-        </aside>
-      </section>
+          <div class="meta">
+            <div><b>Updated</b><span id="updated-at">—</span></div>
+            <div><b>Level</b><span id="level">—</span></div>
+            <div><b>Session</b><span>Pagi 07:00 · Malam 20:00 WIB</span></div>
+          </div>
+        </section>
 
-      <section class="grid" aria-label="Materi HSK">
-        <article class="level-card hsk1">
-          <div class="level-top"><span>HSK 1</span><strong>Foundation</strong></div>
-          <h2>Dasar percakapan Mandarin</h2>
-          <p>Mulai dari pinyin, sapaan, angka, keluarga, waktu, dan kalimat pendek.</p>
-          <a href="https://drive.google.com/drive/folders/1tTeDRld3AzEjY9zySMCfgakOHvwwRJpf" target="_blank" rel="noopener">Buka Materi HSK 1</a>
-        </article>
-        <article class="level-card hsk2">
-          <div class="level-top"><span>HSK 2</span><strong>Expansion</strong></div>
-          <h2>Perluas pola dan kosakata</h2>
-          <p>Latihan grammar dasar, aktivitas harian, arah, tempat, dan ekspresi umum.</p>
-          <a href="https://drive.google.com/drive/folders/1voKUefz1sBl4Z_u8ls2Fnx-0S-XwWFp1" target="_blank" rel="noopener">Buka Materi HSK 2</a>
-        </article>
-        <article class="level-card hsk3">
-          <div class="level-top"><span>HSK 3</span><strong>Momentum</strong></div>
-          <h2>Naik ke kalimat kompleks</h2>
-          <p>Fokus ke reading, listening, connector, dan latihan memahami konteks.</p>
-          <a href="https://drive.google.com/drive/folders/1Pv9PomHhaHQMgUm3jc2OdkOVKL2w_yoV" target="_blank" rel="noopener">Buka Materi HSK 3</a>
-        </article>
-      </section>
+        <div class="section-title">
+          <h2>📚 Materi HSK</h2>
+          <span>Google Drive folders</span>
+        </div>
 
-      <section class="panel">
-        <div>
-          <p class="eyebrow">Cronjob Plan</p>
-          <h2>Jadwal otomatis</h2>
-          <p>GitHub Actions menjalankan script harian untuk mengganti fokus belajar dan bisa diperluas menjadi reminder Telegram/Discord.</p>
+        <section class="levels">
+          <article class="card hsk1">
+            <div class="level-tag"><span>HSK 1</span><small>Foundation</small></div>
+            <h3>Dasar Mandarin</h3>
+            <p class="muted">Pinyin, nada, sapaan, angka, keluarga, waktu, dan kalimat sederhana.</p>
+            <a class="button" href="https://drive.google.com/drive/folders/1tTeDRld3AzEjY9zySMCfgakOHvwwRJpf" target="_blank" rel="noopener">Buka HSK 1</a>
+          </article>
+
+          <article class="card hsk2">
+            <div class="level-tag"><span>HSK 2</span><small>Expansion</small></div>
+            <h3>Tambah Kosakata</h3>
+            <p class="muted">Grammar ringan, aktivitas harian, tempat, arah, dan dialog pendek.</p>
+            <a class="button" href="https://drive.google.com/drive/folders/1voKUefz1sBl4Z_u8ls2Fnx-0S-XwWFp1" target="_blank" rel="noopener">Buka HSK 2</a>
+          </article>
+
+          <article class="card hsk3">
+            <div class="level-tag"><span>HSK 3</span><small>Momentum</small></div>
+            <h3>Naik Level</h3>
+            <p class="muted">Reading, listening, connector, dan memahami kalimat lebih panjang.</p>
+            <a class="button" href="https://drive.google.com/drive/folders/1Pv9PomHhaHQMgUm3jc2OdkOVKL2w_yoV" target="_blank" rel="noopener">Buka HSK 3</a>
+          </article>
+        </section>
+
+        <div class="section-title">
+          <h2>🗓️ Jadwal</h2>
+          <span>Cronjob-ready routine</span>
         </div>
-        <div class="timeline">
-          <div><b>07:00</b><span>Update daily focus</span></div>
-          <div><b>20:00</b><span>Review vocabulary & grammar</span></div>
-          <div><b>Minggu</b><span>Weekly checkpoint</span></div>
-        </div>
-      </section>
-    </main>
-    <script src="app.js"></script>
+
+        <section class="sessions">
+          <article class="card session-card">
+            <strong>🌅 Pagi 07:00</strong>
+            <p class="muted">Buka fokus harian, review kosakata, dan dengarkan audio pendek.</p>
+          </article>
+          <article class="card session-card">
+            <strong>🌙 Malam 20:00</strong>
+            <p class="muted">Ulangi materi hari ini, tulis kalimat, dan catat kata yang susah.</p>
+          </article>
+          <article class="card session-card">
+            <strong>📌 Mingguan</strong>
+            <p class="muted">Review HSK 1-3, pilih bagian lemah, dan tentukan target minggu depan.</p>
+          </article>
+        </section>
+      </main>
+
+      <footer class="footer">中文 HSK Dashboard · Auto updated by GitHub Actions · learning.indraseptianto.my.id</footer>
+    </div>
+
+    <script>
+      async function loadDailyFocus() {
+        const fallback = {
+          title: 'HSK 1 - 20 menit vocabulary',
+          description: 'Kalau cronjob belum update, pakai sesi ringan: ulangi kosakata dasar, dengarkan audio, lalu tulis 5 contoh kalimat.',
+          level: 'HSK 1',
+          updated_at: null,
+          tasks: ['Review 10 kata', 'Dengar audio 10 menit', 'Tulis 5 kalimat pendek']
+        };
+
+        try {
+          const response = await fetch('data/daily.json', { cache: 'no-store' });
+          if (!response.ok) throw new Error(`daily.json ${response.status}`);
+          renderDaily(await response.json());
+        } catch (error) {
+          renderDaily(fallback);
+        }
+      }
+
+      function renderDaily(data) {
+        document.querySelector('#daily-title').textContent = data.title || 'Daily HSK Focus';
+        document.querySelector('#daily-desc').textContent = data.description || 'Belajar ringan dan konsisten.';
+        document.querySelector('#level').textContent = data.level || '—';
+        document.querySelector('#updated-at').textContent = data.updated_at ? new Date(data.updated_at).toLocaleString('id-ID') : '—';
+
+        const list = document.querySelector('#daily-tasks');
+        list.innerHTML = '';
+        for (const task of data.tasks || []) {
+          const item = document.createElement('li');
+          item.textContent = task;
+          list.appendChild(item);
+        }
+      }
+
+      loadDailyFocus();
+    </script>
   </body>
 </html>
