@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HSK Learning Dashboard</title>
+    <meta name="description" content="Dashboard belajar HSK 1-3, materi Google Drive, progress harian, dan jadwal review otomatis." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">learning.indraseptianto.my.id</p>
+          <h1>HSK learning control room</h1>
+          <p class="hero-copy">Dashboard ringan untuk ngatur materi HSK 1-3, target harian, review mingguan, dan catatan progress. Cocok dipakai bareng cronjob/GitHub Actions.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#today">Mulai Hari Ini</a>
+            <a class="button ghost" href="noted.md">Buka Catatan Project</a>
+          </div>
+        </div>
+        <aside class="today-card" id="today">
+          <span class="badge">Today's Focus</span>
+          <h2 id="daily-title">Memuat jadwal...</h2>
+          <p id="daily-desc">Dashboard akan membaca file <code>data/daily.json</code> yang di-update oleh cronjob.</p>
+          <ul id="daily-tasks"></ul>
+        </aside>
+      </section>
+
+      <section class="grid" aria-label="Materi HSK">
+        <article class="level-card hsk1">
+          <div class="level-top"><span>HSK 1</span><strong>Foundation</strong></div>
+          <h2>Dasar percakapan Mandarin</h2>
+          <p>Mulai dari pinyin, sapaan, angka, keluarga, waktu, dan kalimat pendek.</p>
+          <a href="https://drive.google.com/drive/folders/1tTeDRld3AzEjY9zySMCfgakOHvwwRJpf" target="_blank" rel="noopener">Buka Materi HSK 1</a>
+        </article>
+        <article class="level-card hsk2">
+          <div class="level-top"><span>HSK 2</span><strong>Expansion</strong></div>
+          <h2>Perluas pola dan kosakata</h2>
+          <p>Latihan grammar dasar, aktivitas harian, arah, tempat, dan ekspresi umum.</p>
+          <a href="https://drive.google.com/drive/folders/1voKUefz1sBl4Z_u8ls2Fnx-0S-XwWFp1" target="_blank" rel="noopener">Buka Materi HSK 2</a>
+        </article>
+        <article class="level-card hsk3">
+          <div class="level-top"><span>HSK 3</span><strong>Momentum</strong></div>
+          <h2>Naik ke kalimat kompleks</h2>
+          <p>Fokus ke reading, listening, connector, dan latihan memahami konteks.</p>
+          <a href="https://drive.google.com/drive/folders/1Pv9PomHhaHQMgUm3jc2OdkOVKL2w_yoV" target="_blank" rel="noopener">Buka Materi HSK 3</a>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div>
+          <p class="eyebrow">Cronjob Plan</p>
+          <h2>Jadwal otomatis</h2>
+          <p>GitHub Actions menjalankan script harian untuk mengganti fokus belajar dan bisa diperluas menjadi reminder Telegram/Discord.</p>
+        </div>
+        <div class="timeline">
+          <div><b>07:00</b><span>Update daily focus</span></div>
+          <div><b>20:00</b><span>Review vocabulary & grammar</span></div>
+          <div><b>Minggu</b><span>Weekly checkpoint</span></div>
+        </div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

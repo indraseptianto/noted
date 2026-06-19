@@ -1,0 +1,31 @@
+name: Update HSK Daily Focus
+
+on:
+  schedule:
+    # 00:00 UTC = 07:00 WIB
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-daily-focus:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate daily focus
+        run: python scripts/update_daily_focus.py
+
+      - name: Commit daily focus when changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update HSK daily focus"
+          file_pattern: data/daily.json
