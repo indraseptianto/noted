@@ -1,14 +1,14 @@
 {
   "level": "HSK 1",
-  "title": "HSK 1 - Pinyin & sapaan",
-  "description": "Bangun fondasi: pinyin, nada, sapaan, angka, dan kalimat pendek.",
+  "title": "HSK 1 - Listening pendek",
+  "description": "Fokus telinga: dengarkan materi pendek dan ulangi dengan suara keras.",
   "tasks": [
-    "Review 15 kosakata HSK 1",
-    "Dengar audio 10 menit",
-    "Tulis 5 kalimat sederhana"
+    "Shadowing 10 menit",
+    "Catat 5 kata sulit",
+    "Baca ulang 1 dialog"
   ],
-  "date": "2026-06-21",
-  "updated_at": "2026-06-21T02:52:57.239911+00:00",
+  "date": "2026-06-22",
+  "updated_at": "2026-06-22T02:55:41.570688+00:00",
   "materials": {
     "hsk1": "https://drive.google.com/drive/folders/1tTeDRld3AzEjY9zySMCfgakOHvwwRJpf",
     "hsk2": "https://drive.google.com/drive/folders/1voKUefz1sBl4Z_u8ls2Fnx-0S-XwWFp1",
