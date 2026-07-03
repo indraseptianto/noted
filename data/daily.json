@@ -1,14 +1,14 @@
 {
   "level": "HSK 3",
-  "title": "HSK 3 - Connector & konteks",
-  "description": "Fokus memahami kalimat lebih panjang dan hubungan antaride.",
+  "title": "HSK 3 - Mixed listening",
+  "description": "Latihan listening lebih natural dengan target menangkap ide utama.",
   "tasks": [
-    "Review connector",
-    "Baca 1 paragraf",
-    "Tulis 3 kalimat kompleks"
+    "Dengar audio 15 menit",
+    "Catat keyword",
+    "Ulangi 5 kalimat yang terdengar"
   ],
-  "date": "2026-07-02",
-  "updated_at": "2026-07-02T02:31:41.915032+00:00",
+  "date": "2026-07-03",
+  "updated_at": "2026-07-03T02:06:54.241127+00:00",
   "materials": {
     "hsk1": "https://drive.google.com/drive/folders/1tTeDRld3AzEjY9zySMCfgakOHvwwRJpf",
     "hsk2": "https://drive.google.com/drive/folders/1voKUefz1sBl4Z_u8ls2Fnx-0S-XwWFp1",
