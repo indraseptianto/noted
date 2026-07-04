@@ -1,14 +1,14 @@
 {
-  "level": "HSK 3",
-  "title": "HSK 3 - Mixed listening",
-  "description": "Latihan listening lebih natural dengan target menangkap ide utama.",
+  "level": "Review",
+  "title": "Weekly review - HSK 1 sampai 3",
+  "description": "Hari checkpoint: rapikan catatan, ulangi bagian lemah, dan pilih fokus minggu depan.",
   "tasks": [
-    "Dengar audio 15 menit",
-    "Catat keyword",
-    "Ulangi 5 kalimat yang terdengar"
+    "Review semua catatan minggu ini",
+    "Pilih 10 kata tersulit",
+    "Tentukan target minggu depan"
   ],
-  "date": "2026-07-03",
-  "updated_at": "2026-07-03T02:06:54.241127+00:00",
+  "date": "2026-07-04",
+  "updated_at": "2026-07-04T02:04:49.863076+00:00",
   "materials": {
     "hsk1": "https://drive.google.com/drive/folders/1tTeDRld3AzEjY9zySMCfgakOHvwwRJpf",
     "hsk2": "https://drive.google.com/drive/folders/1voKUefz1sBl4Z_u8ls2Fnx-0S-XwWFp1",
