@@ -1,14 +1,14 @@
 {
-  "level": "HSK 1",
-  "title": "HSK 1 - Listening pendek",
-  "description": "Fokus telinga: dengarkan materi pendek dan ulangi dengan suara keras.",
+  "level": "HSK 2",
+  "title": "HSK 2 - Grammar ringan",
+  "description": "Naik level dengan pola kalimat harian, tempat, waktu, dan aktivitas.",
   "tasks": [
-    "Shadowing 10 menit",
-    "Catat 5 kata sulit",
-    "Baca ulang 1 dialog"
+    "Review 1 pola grammar",
+    "Buat 8 contoh kalimat",
+    "Ulangi 20 kosakata HSK 2"
   ],
-  "date": "2026-07-06",
-  "updated_at": "2026-07-06T02:25:20.704295+00:00",
+  "date": "2026-07-07",
+  "updated_at": "2026-07-07T02:13:38.510933+00:00",
   "materials": {
     "hsk1": "https://drive.google.com/drive/folders/1tTeDRld3AzEjY9zySMCfgakOHvwwRJpf",
     "hsk2": "https://drive.google.com/drive/folders/1voKUefz1sBl4Z_u8ls2Fnx-0S-XwWFp1",
