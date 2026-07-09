@@ -1,14 +1,14 @@
 {
-  "level": "HSK 2",
-  "title": "HSK 2 - Reading drill",
-  "description": "Latihan membaca cepat dan memahami konteks kalimat sederhana.",
+  "level": "HSK 3",
+  "title": "HSK 3 - Connector & konteks",
+  "description": "Fokus memahami kalimat lebih panjang dan hubungan antaride.",
   "tasks": [
-    "Baca 1 teks pendek",
-    "Tandai kata baru",
-    "Ringkas isi teks dalam Bahasa Indonesia"
+    "Review connector",
+    "Baca 1 paragraf",
+    "Tulis 3 kalimat kompleks"
   ],
-  "date": "2026-07-08",
-  "updated_at": "2026-07-08T01:54:24.526588+00:00",
+  "date": "2026-07-09",
+  "updated_at": "2026-07-09T02:07:24.930195+00:00",
   "materials": {
     "hsk1": "https://drive.google.com/drive/folders/1tTeDRld3AzEjY9zySMCfgakOHvwwRJpf",
     "hsk2": "https://drive.google.com/drive/folders/1voKUefz1sBl4Z_u8ls2Fnx-0S-XwWFp1",
