@@ -1,14 +1,14 @@
 {
-  "level": "Review",
-  "title": "Weekly review - HSK 1 sampai 3",
-  "description": "Hari checkpoint: rapikan catatan, ulangi bagian lemah, dan pilih fokus minggu depan.",
+  "level": "HSK 1",
+  "title": "HSK 1 - Pinyin & sapaan",
+  "description": "Bangun fondasi: pinyin, nada, sapaan, angka, dan kalimat pendek.",
   "tasks": [
-    "Review semua catatan minggu ini",
-    "Pilih 10 kata tersulit",
-    "Tentukan target minggu depan"
+    "Review 15 kosakata HSK 1",
+    "Dengar audio 10 menit",
+    "Tulis 5 kalimat sederhana"
   ],
-  "date": "2026-07-11",
-  "updated_at": "2026-07-11T01:52:47.711950+00:00",
+  "date": "2026-07-12",
+  "updated_at": "2026-07-12T01:55:57.098621+00:00",
   "materials": {
     "hsk1": "https://drive.google.com/drive/folders/1tTeDRld3AzEjY9zySMCfgakOHvwwRJpf",
     "hsk2": "https://drive.google.com/drive/folders/1voKUefz1sBl4Z_u8ls2Fnx-0S-XwWFp1",
